@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Tree</title>
+</head>
+
+<body>
+
+    <div id="tree"></div>
+    <script>
+        window.onload = function() {
+            var data = {
+                firstElement: 1,
+                secondElement: 2,
+                thirdElement: {
+                    one: 'one',
+                    dos: {
+                        sub2: '2',
+                        sub3: '3',
+                        sub4: {
+                            sub5: '5',
+                            sub6: '6',
+                            sub7: [{
+                                ops: 'ops',
+                              },
+                              {
+                                other:'none',
+                                wow:[
+                                  1,2,3
+                                ]
+                              },
+                              1,
+                              4
+                          ]
+                        }
+                    }
+                }
+            };
+
+            function createTree(data) {
+                var ul = document.createElement('ul');
+                for (p in data) {
+                    var li = document.createElement('li');
+                    //Array nor working
+                    if (data[p] instanceof Array) {
+                        li.innerHTML = p + ' : ';
+                        li.appendChild(createTree(data[p]));
+                    } else if (typeof data[p] === 'object') {
+                        li.innerHTML = p + ' : ';
+                        li.appendChild(createTree(data[p]));
+
+                    } else {
+                        li.innerHTML = p + ' : ' + data[p];
+                    }
+                    ul.appendChild(li)
+                }
+                return ul;
+            }
+
+            var ul = createTree(data);
+
+            tree.appendChild(ul)
+
+        }
+    </script>
+</body>
+
+</html>
