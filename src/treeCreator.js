@@ -7,11 +7,11 @@ const createTree = (data)=>{
   let li = [];
   for (let p in data) {
     if (data[p] instanceof Array) {
-      li.push(<Li propertyName={p} key={generateKey(data[p])}>[{createTree(data[p])}]</Li>)
+      li.push(<Li propertyName={p} key={generateKey(data[p])} propertyValue={JSON.stringify(data[p])}>[{createTree(data[p])}]</Li>)
     } else  if (typeof data[p] === 'object') {
-      li.push(<Li propertyName={p} key={generateKey(data[p])}>{String.fromCharCode(123)}{createTree(data[p])}{String.fromCharCode(125)}</Li>)
+      li.push(<Li propertyName={p} key={generateKey(data[p])} propertyValue={JSON.stringify(data[p])}>{String.fromCharCode(123)}{createTree(data[p])}{String.fromCharCode(125)}</Li>)
     } else {
-      li.push(<Li propertyName={p} key={generateKey(data[p])}  propertyValue={data[p]}></Li>)
+      li.push(<Li propertyName={p} key={generateKey(data[p])} propertyValue={JSON.stringify(data[p])}  displayValue={data[p]}></Li>)
     }
   }
   return(
@@ -22,9 +22,9 @@ const createTree = (data)=>{
 }
 
 
-const Li = ({propertyName, propertyValue, children=null})=>(
+const Li = ({propertyName, propertyValue, displayValue, children=null})=>(
   <li>
-    <span data-prop={propertyName} data-value={propertyValue}><code>{propertyName} : {propertyValue}</code></span>
+    <span data-prop={propertyName} data-value={propertyValue}><code>{propertyName} : {displayValue}</code></span>
     {children}
   </li>
 );
