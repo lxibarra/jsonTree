@@ -18,6 +18,14 @@
   font-size: large;
 }
 
+/*
+  Move later to its own component folder
+*/
+
+.jsonBuilder li code:hover {
+  background-color: #ccc;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

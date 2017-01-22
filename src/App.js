@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddRemoveNodes from './addRemoveNodes';
+//import AddRemoveNodes from './addRemoveNodes';
 import NodeCreator from './NodeCreator';
 import ListItem from './ListItem';
 import treeCreator from './treeCreator';
@@ -41,7 +41,8 @@ class App extends Component {
           top:e.nativeEvent.target.offsetTop,
           display:'block'
         },
-        target:e.nativeEvent.target
+        propertyName:e.nativeEvent.target? e.nativeEvent.target.getAttribute('data-prop') : '',
+        propertyValue:e.nativeEvent.target? e.nativeEvent.target.getAttribute('data-value') : ''
       });
     }
   }
@@ -75,8 +76,7 @@ class App extends Component {
             </li>
           </ul>
         </div>
-        <NodeCreator/>
-        <AddRemoveNodes style={this.state.style} target={this.state.target}/>
+        <NodeCreator style={this.state.style} propertyName={this.state.propertyName} propertyValue={this.state.propertyValue}/>
       </div>
     );
   }
